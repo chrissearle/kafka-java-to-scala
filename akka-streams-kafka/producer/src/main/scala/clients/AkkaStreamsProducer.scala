@@ -1,0 +1,48 @@
+package clients
+
+import akka.actor.ActorSystem
+import akka.kafka.scaladsl._
+import akka.kafka.{ProducerMessage, ProducerSettings}
+import akka.stream.ActorMaterializer
+import akka.stream.scaladsl.{Sink, Source}
+import org.apache.kafka.clients.producer.ProducerRecord
+import org.apache.kafka.common.serialization.{Serdes, Serializer}
+
+import pureconfig.generic.auto._
+
+case class Config(bootstrapServers: String,
+                  topic: String)
+
+object AkkaStreamsProducer extends App {
+
+  pureconfig.loadConfig[Config] match {
+    case Left(errors) =>
+      println(errors)
+      System.exit(1)
+
+    case Right(config: Config) =>
+      println("*** Starting Producer ***")
+
+      implicit val sys = ActorSystem()
+      implicit val mat = ActorMaterializer()
+
+      val keySerializer = Serdes.String().serializer()
+      val valueSerializer = Serdes.Integer().serializer().asInstanceOf[Serializer[Int]]
+
+      val producerSettings = ProducerSettings(sys, keySerializer, valueSerializer)
+        .withBootstrapServers(config.bootstrapServers)
+
+      Source
+        .fromIterator(() => (0 to 10000).toIterator)
+        .map(i => i * 2)
+        .map { i =>
+          ProducerMessage.Message(new ProducerRecord[String, Int](config.topic, i), i)
+        }
+        .via(Producer.flexiFlow(producerSettings))
+        .runWith {
+          Sink.foreach(res => println(s"Wrote ${res.passThrough} to ${config.topic}"))
+        }
+  }
+}
+
+
