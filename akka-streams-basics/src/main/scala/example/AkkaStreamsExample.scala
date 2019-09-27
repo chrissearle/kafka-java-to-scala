@@ -10,18 +10,19 @@ import scala.concurrent.Future
 object IntSeqExample extends App {
   implicit val system = ActorSystem("IntSeqExample")
   implicit val materializer = ActorMaterializer()
+  implicit val ec = system.dispatcher
 
   val source: Source[Int, NotUsed] = Source(1 to 100)
 
   val done: Future[Done] = source.runForeach(i => println(i))
 
-  implicit val ec = system.dispatcher
   done.onComplete(_ => system.terminate())
 }
 
 object IntSeqExample2 extends App {
   implicit val system = ActorSystem("IntSeqExample2")
   implicit val materializer = ActorMaterializer()
+  implicit val ec = system.dispatcher
 
   val source: Source[Int, NotUsed] = Source(1 to 100)
 
@@ -29,13 +30,13 @@ object IntSeqExample2 extends App {
 
   val done = source.runWith(sink)
 
-  implicit val ec = system.dispatcher
   done.onComplete(_ => system.terminate())
 }
 
 object IntSeqExample3 extends App {
   implicit val system = ActorSystem("IntSeqExample2")
   implicit val materializer = ActorMaterializer()
+  implicit val ec = system.dispatcher
 
   val evenFlow: Flow[Int, Int, NotUsed] =
     Flow[Int].filter(i => i % 2 == 0)
@@ -50,13 +51,13 @@ object IntSeqExample3 extends App {
 
   val done = evenStringSource.runWith(sink)
 
-  implicit val ec = system.dispatcher
   done.onComplete(_ => system.terminate())
 }
 
 object FactorialExample extends App {
   implicit val system = ActorSystem("FactorialExample")
   implicit val materializer = ActorMaterializer()
+  implicit val ec = system.dispatcher
 
   val source: Source[Int, NotUsed] = Source(1 to 100)
 
@@ -66,6 +67,5 @@ object FactorialExample extends App {
     .zipWith(Source(0 to 100))((num, idx) => s"$idx! = $num")
     .runForeach(println)
 
-  implicit val ec = system.dispatcher
   done.onComplete(_ => system.terminate())
 }

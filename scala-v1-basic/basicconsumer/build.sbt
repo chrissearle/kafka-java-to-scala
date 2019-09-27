@@ -1,10 +1,12 @@
 ThisBuild / scalaVersion     := "2.12.10"
 ThisBuild / version          := "0.1.0-SNAPSHOT"
-ThisBuild / organization     := "net.chrisearle"
+ThisBuild / organization     := "net.chrissearle"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "AkkaStreamsExample",
+    name := "BasicConsumer",
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-stream" % "2.5.25"    )
+      "org.apache.kafka" % "kafka-clients" % "2.3.0"
+    )
   )
+

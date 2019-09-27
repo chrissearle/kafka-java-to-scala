@@ -1,13 +1,13 @@
-name := "akka-streams-producer"
+ThisBuild / scalaVersion     := "2.12.10"
+ThisBuild / version          := "0.1.0-SNAPSHOT"
+ThisBuild / organization     := "net.chrisearle"
 
-version := "0.1"
-
-scalaVersion := "2.12.8"
-
-libraryDependencies ++= Seq(
-  "org.apache.kafka" % "kafka-clients" % "2.2.0",
-  "ch.qos.logback" % "logback-classic" % "1.2.3",
-  "ch.qos.logback" % "logback-core" % "1.2.3",
-  "com.github.pureconfig" %% "pureconfig" % "0.10.2",
-  "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.3"
-)
+lazy val root = (project in file("."))
+  .settings(
+    name := "AkkaProducer",
+    libraryDependencies ++= Seq(
+      "org.apache.kafka" % "kafka-clients" % "2.3.0",
+      "com.github.pureconfig" %% "pureconfig" % "0.12.0",
+      "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.5"
+    )
+  )
