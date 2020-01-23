@@ -6,5 +6,6 @@ lazy val root = (project in file("."))
   .settings(
     name := "AkkaStreamsExample",
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-stream" % "2.5.25"    )
+      "com.typesafe.akka" %% "akka-stream" % "2.6.1"
+    )
   )
