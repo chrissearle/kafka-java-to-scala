@@ -4,10 +4,10 @@ ThisBuild / organization     := "net.chrisearle"
 
 lazy val root = (project in file("."))
   .settings(
-    name := "ConfigConsumer",
+    name := "ConfigProducer",
     libraryDependencies ++= Seq(
-      "org.apache.kafka" % "kafka-clients" % "2.3.0",
-      "com.github.pureconfig" %% "pureconfig" % "0.12.0"
+      "org.apache.kafka" % "kafka-clients" % "2.4.0",
+      "com.github.pureconfig" %% "pureconfig" % "0.12.2"
     )
   )
 
