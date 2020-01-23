@@ -6,7 +6,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "BasicProducer",
     libraryDependencies ++= Seq(
-      "org.apache.kafka" % "kafka-clients" % "2.3.0"
+      "org.apache.kafka" % "kafka-clients" % "2.4.0"
     )
   )
 
