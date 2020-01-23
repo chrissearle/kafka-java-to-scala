@@ -8,6 +8,6 @@ lazy val root = (project in file("."))
     libraryDependencies ++= Seq(
       "org.apache.kafka" % "kafka-clients" % "2.4.0",
       "com.github.pureconfig" %% "pureconfig" % "0.12.2",
-      "com.typesafe.akka" %% "akka-stream-kafka" % "1.0.5"
+      "com.typesafe.akka" %% "akka-stream-kafka" % "2.0.0"
     )
   )
