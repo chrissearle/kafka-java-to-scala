@@ -5,10 +5,6 @@ version: "3"
 # This docker-compose file will bootstrap a docker environment,
 # with Kafka and Confluent components, for local development. Under
 # no circumstance should this setup be used in production!
-#
-# Services like Kafka Connect, Schema Registry and Confluent
-# Control Center are not required and can be disabled if they are
-# not needed.
 ###################################################################
 
 services:
