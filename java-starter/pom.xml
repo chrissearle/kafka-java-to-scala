@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.chrissearle.kafka</groupId>
+    <artifactId>kafka-java-to-scala</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <developers>
+        <developer>
+            <id>chris</id>
+            <name>Chris Searle</name>
+            <email>chris@chrissearle.org</email>
+            <url>https://chrissearle.org/</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Oslo</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:chrissearle/kafka-java-to-scala.git</connection>
+        <developerConnection>scm:git:git@github.com:chrissearle/kafka-java-to-scala.git</developerConnection>
+        <url>https://github.com/chrissearle/kafka-java-to-scala</url>
+        <tag>master</tag>
+    </scm>
+
+    <modules>
+        <module>producer</module>
+        <module>consumer</module>
+    </modules>
+</project>
